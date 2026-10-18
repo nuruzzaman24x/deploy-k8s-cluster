@@ -44,7 +44,7 @@ kubeadm init \
 
 log "Configuring kubeconfig"
 mkdir -p /root/.kube
-cp -i /etc/kubernetes/admin.conf /root/.kube/config
+cp -f /etc/kubernetes/admin.conf /root/.kube/config
 
 REAL_USER="${SUDO_USER:-}"
 if [[ -n "${REAL_USER}" ]]; then
