@@ -69,8 +69,8 @@ anything. All scripts read topology from this one file, so it must be
 identical everywhere:
 
 ```bash
-scp -r k8s-kubeadm-lab/ root@172.17.0.233:~/
-scp -r k8s-kubeadm-lab/ dglab@172.17.0.2:~/
+scp -r deploy-k8s-cluster/ root@172.17.0.233:~/
+scp -r deploy-k8s-cluster/ dglab@172.17.0.2:~/
 #scp -r k8s-kubeadm-lab/ user@192.168.247.133:~/
 #scp -r k8s-kubeadm-lab/ user@192.168.247.135:~/
 ```
