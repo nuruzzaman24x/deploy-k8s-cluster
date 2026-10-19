@@ -52,14 +52,14 @@ Kubernetes version, more/fewer workers):
 K8S_VERSION="1.35.0"
 POD_CIDR="10.244.0.0/16"
 
-MASTER_HOSTNAME="master"
-MASTER_IP="192.168.247.131"
+MASTER_HOSTNAME="master01"
+MASTER_IP="172.17.0.232"
 
-WORKER_HOSTNAMES=("worker1" "worker2")
-WORKER_IPS=("192.168.247.132" "192.168.247.133")
+WORKER_HOSTNAMES=("worker01" "worker2")
+WORKER_IPS=("172.17.0.233" "192.168.247.133")
 
 NFS_HOSTNAME="nfs"
-NFS_IP="192.168.247.135"
+NFS_IP="172.17.0.2"
 NFS_EXPORT_PATH="/srv/nfs/kubedata"
 ```
 
@@ -69,10 +69,10 @@ anything. All scripts read topology from this one file, so it must be
 identical everywhere:
 
 ```bash
-scp -r k8s-kubeadm-lab/ user@192.168.247.131:~/
-scp -r k8s-kubeadm-lab/ user@192.168.247.132:~/
-scp -r k8s-kubeadm-lab/ user@192.168.247.133:~/
-scp -r k8s-kubeadm-lab/ user@192.168.247.135:~/
+scp -r k8s-kubeadm-lab/ root@172.17.0.233:~/
+scp -r k8s-kubeadm-lab/ dglab@172.17.0.2:~/
+#scp -r k8s-kubeadm-lab/ user@192.168.247.133:~/
+#scp -r k8s-kubeadm-lab/ user@192.168.247.135:~/
 ```
 
 ### Changing the topology (more/fewer workers)
@@ -82,7 +82,7 @@ entries in both (keeping the same order) to resize the cluster:
 
 ```bash
 WORKER_HOSTNAMES=("worker1" "worker2" "worker3")
-WORKER_IPS=("192.168.247.132" "192.168.247.133" "192.168.247.134")
+WORKER_IPS=("172.17.0.233" "192.168.247.133" "192.168.247.134")
 ```
 
 ### Changing the Kubernetes version
