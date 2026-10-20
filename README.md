@@ -103,22 +103,23 @@ K8S_VERSION="1.34.2"   # CRIO_VERSION becomes v1.34 automatically
 
 2. **On each worker**: `sudo ./scripts/02-join-worker.sh <TOKEN> <CA_CERT_HASH>`
    Take `<TOKEN>` and `<CA_CERT_HASH>` from step 1's output. `MASTER_IP`
-   itself comes from `config.env`, so you don't pass it here.
+   It comes from `config.env`, so you don't pass it here. like    root@worker01:~/deploy-k8s-cluster/scripts# ./02-join-worker.sh 32k9gq.6oxje6k4ydujpn5v sha256:6b36429055ad02b2f17259f128d52bd6a225169a67c88211a249fb6c9a219f0a
+     
 
-3. **Verify from `master`**:
+4. **Verify from `master`**:
    ```bash
    kubectl get nodes -o wide
    ```
    All nodes should show `Ready` with `VERSION` matching `K8S_VERSION`.
 
-4. **On `nfs`**: `sudo ./scripts/03-nfs-server-setup.sh`
+5. **On `nfs`**: `sudo ./scripts/03-nfs-server-setup.sh`
    Exports `NFS_EXPORT_PATH` to the master and every worker.
 
-5. **On `master`**: `./scripts/04-nfs-provisioner-install.sh`
+6. **On `master`**: `./scripts/04-nfs-provisioner-install.sh`
    Installs the NFS subdir provisioner via Helm and creates a default
    `nfs-client` StorageClass.
 
-6. **Smoke-test storage**:
+7. **Smoke-test storage**:
    ```yaml
    # test-pvc.yaml
    apiVersion: v1
