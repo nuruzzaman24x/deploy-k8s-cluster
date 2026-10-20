@@ -113,11 +113,10 @@ K8S_VERSION="1.34.2"   # CRIO_VERSION becomes v1.34 automatically
    All nodes should show `Ready` with `VERSION` matching `K8S_VERSION`.
 
 5. **On `nfs`**: `sudo ./scripts/03-nfs-server-setup.sh`
-   Exports `NFS_EXPORT_PATH` to the master and every worker.
+   NFS মেশিনে 03-nfs-server-setup.sh চালান — এটা shared storage তৈরি করে, যাতে master আর worker-গুলো একই ফাইল রাখতে/পড়তে পারে।
 
 6. **On `master`**: `./scripts/04-nfs-provisioner-install.sh`
-   Installs the NFS subdir provisioner via Helm and creates a default
-   `nfs-client` StorageClass.
+   তারপর master-এ 04-nfs-provisioner-install.sh চালান — এটা Kubernetes-কে ওই shared storage ব্যবহার করতে দেয়, যাতে দরকার হলে নিজে storage তৈরি করতে পারে।
 
 7. **Smoke-test storage**:
    ```yaml
